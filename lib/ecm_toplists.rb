@@ -1,2 +1,1 @@
-module EcmToplists
-end
+require 'ecm/toplists'
