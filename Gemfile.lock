@@ -4,6 +4,13 @@ GIT
   specs:
     ecm_frontend (0.0.7)
 
+GIT
+  remote: git://github.com/robotex82/ranked-model.git
+  revision: 6285d3efb5f671abee1efb51bfc5ff2e96aa2d9f
+  specs:
+    ranked-model (0.0.4)
+      activerecord (>= 3.0.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -124,7 +131,8 @@ DEPENDENCIES
   capybara (>= 0.4.0)
   ecm_frontend!
   factory_girl_rails
-  paperclip
+  paperclip (~> 2.3)
   rails (= 3.0.9)
+  ranked-model!
   rspec-rails (>= 2.0.0.beta)
   sqlite3

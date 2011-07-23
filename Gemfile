@@ -16,4 +16,5 @@ group :test do
 end  
 
 gem 'ecm_frontend', :git => 'git://github.com/robotex82/ecm_frontend.git'
-gem 'paperclip'
+gem 'ranked-model', :git => 'git://github.com/robotex82/ranked-model.git'
+gem 'paperclip', "~> 2.3"
