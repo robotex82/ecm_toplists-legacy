@@ -5,5 +5,11 @@ module Ecm
         ApplicationController.helper(Ecm::ToplistHelper)
       end  
     end
+    
+    def self.config(&block)
+      @@config ||= Engine.config
+      yield @@config if block
+      return @@config
+    end
   end  
 end

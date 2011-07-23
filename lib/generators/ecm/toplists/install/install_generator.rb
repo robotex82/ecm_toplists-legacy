@@ -33,6 +33,14 @@ module Ecm
           "create_#{underscored_name.pluralize}"
         end
         
+        def model_name
+          name
+        end  
+        
+        def model_filename
+          "#{name.underscore}.rb"
+        end  
+        
         def route_name
           underscored_name.pluralize
         end
@@ -40,13 +48,24 @@ module Ecm
         def underscored_name
           name.underscore
         end
+        
+        def generate_initializer
+          initializer("ecm_toplists.rb") do
+            "Ecm::Toplists.config do |config|\n  config.scoped_views = false\nend"
+          end
+        end
 
         def generate_model
           # Rails::Generators.invoke("active_record:model", [name, "#{fields} --parent=Ecm::Toplist::Base"])
           options = "--parent=Ecm::Toplist"
-          generate("model", name, model_fields, options)
-          # gsub_file 'app/models/#{underscored_name}.rb', /ActiveRecord::Base/, 'Ecm::Toplist'
-        end    
+          generate("model", model_name, model_fields, options)
+        end   
+        
+        def generate_model_content
+          inject_into_class "app/models/#{model_filename}", model_name.constantize do
+            "  include RankedModel\n  ranks :list_order\n  default_scope :order => 'list_order ASC'\n"
+          end
+        end
         
         def self.next_migration_number(path)
           unless @prev_migration_nr

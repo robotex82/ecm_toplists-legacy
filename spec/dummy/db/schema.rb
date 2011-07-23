@@ -10,9 +10,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110723013138) do
+ActiveRecord::Schema.define(:version => 20110723222707) do
 
-  create_table "top_clubs", :force => true do |t|
+  create_table "charts", :force => true do |t|
     t.string   "list_order"
     t.string   "name"
     t.text     "description"

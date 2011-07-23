@@ -13,6 +13,7 @@ gem "rspec-rails", ">= 2.0.0.beta"
 group :test do
   # Factory girl
   gem 'factory_girl_rails'
+  gem 'forgery'
 end  
 
 gem 'ecm_frontend', :git => 'git://github.com/robotex82/ecm_frontend.git'

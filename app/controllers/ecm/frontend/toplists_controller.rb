@@ -9,7 +9,13 @@ class Ecm::Frontend::ToplistsController < Ecm::FrontendController
     @objects = @_model.all
 
     respond_to do |format|
-      format.html { render '/ecm/frontend/toplists/index' }
+      format.html do
+        if Ecm::Toplists.config.scoped_views
+          render 'index'
+        else
+          render '/ecm/frontend/toplists/index'
+        end
+      end 
       format.xml  { render :xml => @objects }
     end
   end
@@ -18,7 +24,13 @@ class Ecm::Frontend::ToplistsController < Ecm::FrontendController
     @object = @_model.find(params[:id])
     
     respond_to do |format|
-      format.html { render 'show' }
+      format.html do
+        if Ecm::Toplists.config.scoped_views
+          render 'show'
+        else
+          render '/ecm/frontend/toplists/show'
+        end
+      end 
       format.xml  { render :xml => @object }
     end
   end   

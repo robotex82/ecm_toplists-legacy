@@ -1,5 +1,5 @@
-class TopDj < Ecm::Toplist
+class Charts < Ecm::Toplist
   include RankedModel
-  ranks :list_order    
+  ranks :list_order
   default_scope :order => 'list_order ASC'
 end

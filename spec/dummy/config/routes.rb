@@ -1,4 +1,6 @@
 Dummy::Application.routes.draw do
+  resources :charts, :only => [:index, :show]
+
   resources :top_djs,   :only => [:index, :show]  
   # The priority is based upon order of creation:
   # first created -> highest priority.

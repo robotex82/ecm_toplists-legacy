@@ -1,7 +1,8 @@
 module Ecm
   class Toplist < ActiveRecord::Base
-    include RankedModel
-    ranks :list_order  
+#    include RankedModel
+#    ranks :list_order  
+#    default_scope :order => 'list_order ASC'
     
     validates :name, :presence => true, :uniqueness => true
       
