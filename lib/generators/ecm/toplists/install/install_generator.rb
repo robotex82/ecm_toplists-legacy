@@ -30,6 +30,10 @@ module Ecm
         end
         
         def migration_name
+          "Create#{name.pluralize}"
+        end
+        
+        def migration_filename
           "create_#{underscored_name.pluralize}"
         end
         
@@ -79,7 +83,7 @@ module Ecm
         def generate_migration
           # generate("migration", migration_name, ["list_order:string","name:string","description:text","link:string","preview_image_file_name:string","preview_image_content_type:string"])
           
-          migration_template "create_toplists.rb", "db/migrate/#{migration_name}.rb"
+          migration_template "create_toplists.rb", "db/migrate/#{migration_filename}.rb"
         end         
         
         def generate_toplist_controller

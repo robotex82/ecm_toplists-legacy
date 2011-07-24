@@ -1,7 +1,7 @@
 <div id="<%= list_item.class.to_s.underscore %>-<%= list_item.id %>" class="<%= list_item.class.to_s.underscore %>">
   <h2 class="<%= list_item.class.to_s.underscore %>-name"><%= list_item.name %></h2>
-  <%= image_tag(list_item.preview_image.url, { :class => "toplist-preview-image" }) if list_item.preview_image? %>
-  <p class="<%= list_item.class.to_s.underscore %>-description"><%= list_item.description %></p>
+  <%= link_to(image_tag(list_item.preview_image.url, { :class => "toplist-preview-image" }), list_item) if list_item.preview_image? %>
+  <p class="<%= list_item.class.to_s.underscore %>-description"><%= list_item.description_teaser %></p>
   <% if list_item.link %>
     <p class="<%= list_item.class.to_s.underscore %>-link"><%= link_to list_item.link, list_item.link %></p>  
   <% end %>
