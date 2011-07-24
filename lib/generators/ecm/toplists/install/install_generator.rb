@@ -117,8 +117,8 @@ module Ecm
         end
         
         def generate_admin_controller_content
-          if AdminController
-            if "Admin::#{controller_name}Controller".constantize
+          if defined? ::AdminController
+            if defined? "::Admin::#{controller_name}Controller".constantize
               inject_into_class "app/controllers/admin/#{controller_filename}", "Admin::#{controller_name}Controller".constantize do
 <<-eos
   def list_order_position
@@ -133,7 +133,7 @@ module Ecm
   end
 eos
               end # inject_into_class
-            end # "Admin::#{controller_name}Controller".constantize
+            end
           end # AdminController
         end # def generate_admin_controller_content      
         
@@ -142,7 +142,7 @@ eos
         end
         
         def generate_admin_routes
-          if AdminController
+          if defined? ::AdminController
             # route "resources :#{route_name}, :only => [:index, :show] do\n    member do\n      put 'position/:list_order_position', :action => 'position', :as => 'position'\n    end\n  end"          
             route "
   namespace :admin do
