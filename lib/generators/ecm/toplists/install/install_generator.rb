@@ -70,9 +70,11 @@ module Ecm
         end   
         
         def generate_model_content
-          inject_into_class "app/models/#{model_filename}", model_name.constantize do
-            "  include RankedModel\n  ranks :list_order\n  default_scope :order => 'list_order ASC'\n"
-          end
+          if (begin model_name.constantize rescue nil end.class == Class)
+            inject_into_class "app/models/#{model_filename}", model_name.constantize do
+              "  include RankedModel\n  ranks :list_order\n  default_scope :order => 'list_order ASC'\n"
+            end
+          end  
         end
         
         def self.next_migration_number(path)
@@ -98,26 +100,28 @@ module Ecm
         end
         
         def generate_controller_content
-          inject_into_class "app/controllers/#{controller_filename}", "#{controller_name}Controller".constantize do
-            "  set_model :#{underscored_name}\n"
-          end
+          if (begin "#{controller_name}Controller".constantize rescue nil end.class == Class)
+            inject_into_class "app/controllers/#{controller_filename}", "#{controller_name}Controller".constantize do
+              "  set_model :#{underscored_name}\n"
+            end
+          end  
         end
         
         def generate_admin_toplist_controller
-          if defined? ::AdminController
+          if (begin ::AdminController rescue nil end.class == Class)
             options = "--controller-specs=false --view-specs=false --no-helper"
             generate("controller", "admin/#{controller_name}", "", options)
           end
         end
         
         def generate_admin_controller_parent
-          if defined? ::AdminController
+          if (begin ::AdminController rescue nil end.class == Class)
             gsub_file "app/controllers/admin/#{controller_filename}", /ApplicationController/, 'AdminController'
           end  
         end
         
         def generate_admin_controller_content
-          if defined? "::Admin::#{controller_name}Controller".constantize
+          if (begin "::Admin::#{controller_name}Controller".constantize rescue nil end.class == Class)
             if File.exists?("app/controllers/admin/#{controller_filename}")
               inject_into_class "app/controllers/admin/#{controller_filename}", "Admin::#{controller_name}Controller" do
 <<-eos
