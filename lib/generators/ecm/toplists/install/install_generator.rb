@@ -118,7 +118,8 @@ module Ecm
         
         def generate_admin_controller_content
           if AdminController
-            inject_into_class "app/controllers/admin/#{controller_filename}", "Admin::#{controller_name}Controller".constantize do
+            if "Admin::#{controller_name}Controller".constantize
+              inject_into_class "app/controllers/admin/#{controller_filename}", "Admin::#{controller_name}Controller".constantize do
 <<-eos
   def list_order_position
     @#{object_name} = #{name}.find(params[:id])
@@ -131,8 +132,9 @@ module Ecm
     end
   end
 eos
-            end # inject_into_class
-          end
+              end # inject_into_class
+            end # "Admin::#{controller_name}Controller".constantize
+          end # AdminController
         end # def generate_admin_controller_content      
         
         def generate_routes
