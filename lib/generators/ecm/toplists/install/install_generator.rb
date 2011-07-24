@@ -104,21 +104,21 @@ module Ecm
         end
         
         def generate_admin_toplist_controller
-          if AdminController
+          if defined? ::AdminController
             options = "--controller-specs=false --view-specs=false --no-helper"
             generate("controller", "admin/#{controller_name}", "", options)
           end
         end
         
         def generate_admin_controller_parent
-          if AdminController
+          if defined? ::AdminController
             gsub_file "app/controllers/admin/#{controller_filename}", /ApplicationController/, 'AdminController'
           end  
         end
         
         def generate_admin_controller_content
-          if defined? ::AdminController
-            if defined? "::Admin::#{controller_name}Controller".constantize && File.exists? "app/controllers/admin/#{controller_filename}"
+          if defined? "::Admin::#{controller_name}Controller".constantize
+            if File.exists?("app/controllers/admin/#{controller_filename}")
               inject_into_class "app/controllers/admin/#{controller_filename}", "Admin::#{controller_name}Controller" do
 <<-eos
   def list_order_position

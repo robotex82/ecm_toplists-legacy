@@ -1,16 +1,6 @@
 Dummy::Application.routes.draw do
-
-  
-  namespace :admin do
-    resources :charts, :only => [] do  
-      member do      
-        put 'list_order_position/:list_order_position', :action => 'list_order_position', :as => 'list_order_position'
-      end
-    end            
-  end            
-
-
   resources :charts, :only => [:index, :show]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
