@@ -45,6 +45,10 @@ module Ecm
           "#{name.underscore}.rb"
         end  
         
+        def object_name
+          name.underscore
+        end
+        
         def route_name
           underscored_name.pluralize
         end
@@ -81,15 +85,12 @@ module Ecm
         end
         
         def generate_migration
-          # generate("migration", migration_name, ["list_order:string","name:string","description:text","link:string","preview_image_file_name:string","preview_image_content_type:string"])
-          
           migration_template "create_toplists.rb", "db/migrate/#{migration_filename}.rb"
         end         
         
         def generate_toplist_controller
           options = "--controller-specs=false --view-specs=false --no-helper"
           generate("controller", controller_name, "", options)
-          # template "controller.rb", "app/controllers/#{controller_name}_controller.rb"
         end
         
         def generate_controller_parent
@@ -102,8 +103,55 @@ module Ecm
           end
         end
         
+        def generate_admin_toplist_controller
+          if AdminController
+            options = "--controller-specs=false --view-specs=false --no-helper"
+            generate("controller", "admin/#{controller_name}", "", options)
+          end
+        end
+        
+        def generate_admin_controller_parent
+          if AdminController
+            gsub_file "app/controllers/admin/#{controller_filename}", /ApplicationController/, 'AdminController'
+          end  
+        end
+        
+        def generate_admin_controller_content
+          if AdminController
+            inject_into_class "app/controllers/admin/#{controller_filename}", "Admin::#{controller_name}Controller".constantize do
+<<-eos
+  def list_order_position
+    @#{object_name} = #{name}.find(params[:id])
+    
+    respond_to do |format|
+      if @#{object_name}.update_attribute(:list_order_position, params[:list_order_position])
+        format.html { redirect_to(rails_admin_list_path(:model_name => #{name}), :notice => '#{name} list order position was successfully updated.') }
+        format.xml  { render :xml => @#{object_name.pluralize} }
+      end  
+    end
+  end
+eos
+            end # inject_into_class
+          end
+        end # def generate_admin_controller_content      
+        
         def generate_routes
           route "resources :#{route_name}, :only => [:index, :show]"
+        end
+        
+        def generate_admin_routes
+          if AdminController
+            # route "resources :#{route_name}, :only => [:index, :show] do\n    member do\n      put 'position/:list_order_position', :action => 'position', :as => 'position'\n    end\n  end"          
+            route "
+  namespace :admin do
+    resources :#{route_name}, :only => [] do  
+      member do      
+        put 'list_order_position/:list_order_position', :action => 'list_order_position', :as => 'list_order_position'
+      end
+    end            
+  end            
+"
+          end  
         end
       end
     end

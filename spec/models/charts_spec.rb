@@ -25,4 +25,12 @@ describe Charts do
     @item.link = "http://www.example.com"
     @item.should be_valid
   end    
+  
+  it "should respond to list_order" do
+    @item.should respond_to(:list_order)
+  end
+  
+  it "should respond to list_order_position" do
+    @item.should respond_to(:list_order_position)
+  end  
 end
