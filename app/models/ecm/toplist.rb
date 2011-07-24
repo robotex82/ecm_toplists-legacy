@@ -15,7 +15,7 @@ module Ecm
     
     self.abstract_class = true    
     
-    def description_teaser(count = 30)
+    def description_teaser(count = 200)
       if description.length >= count
         shortened = description[0, count]
         splitted = shortened.split(/\s/)
