@@ -1,7 +1,7 @@
 class <%= migration_name %> < ActiveRecord::Migration
   def self.up
     create_table :<%= table_name %> do |t|
-      t.string :list_order
+      t.integer :list_order
       t.string :name
       t.text :description
       t.string :link
