@@ -118,7 +118,7 @@ module Ecm
         
         def generate_admin_controller_content
           if defined? ::AdminController
-            if defined? "::Admin::#{controller_name}Controller".constantize
+            if defined? "::Admin::#{controller_name}Controller".constantize && File.exists? "app/controllers/admin/#{controller_filename}"
               inject_into_class "app/controllers/admin/#{controller_filename}", "Admin::#{controller_name}Controller" do
 <<-eos
   def list_order_position
