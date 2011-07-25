@@ -11,6 +11,12 @@ Dummy::Application.routes.draw do
 
   resources :charts, :only => [:index, :show]
 
+  get "admin/index"
+
+  devise_for :admins, :skip => :registrations
+
+  root :to => 'home#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

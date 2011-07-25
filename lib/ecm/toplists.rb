@@ -1,3 +1,4 @@
+require 'will_paginate'
 module Ecm
   module Toplists
     class Engine < Rails::Engine

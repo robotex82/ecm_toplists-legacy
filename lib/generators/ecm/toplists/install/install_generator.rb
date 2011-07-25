@@ -63,19 +63,23 @@ module Ecm
           end
         end
 
+#        def generate_model
+#          # Rails::Generators.invoke("active_record:model", [name, "#{fields} --parent=Ecm::Toplist::Base"])
+#          options = "--parent=Ecm::Toplist"
+#          generate("model", model_name, model_fields, options)
+#        end   
+#        
+#        def generate_model_content
+#          if (begin model_name.constantize rescue nil end.class == Class)
+#            inject_into_class "app/models/#{model_filename}", model_name.constantize do
+#              File.open(File.join(File.dirname(__FILE__), "templates", "model_injections.rb")).read
+#            end
+#          end  
+#        end
+
         def generate_model
-          # Rails::Generators.invoke("active_record:model", [name, "#{fields} --parent=Ecm::Toplist::Base"])
-          options = "--parent=Ecm::Toplist"
-          generate("model", model_name, model_fields, options)
+          template("model.rb", "app/models/#{model_filename}")
         end   
-        
-        def generate_model_content
-          if (begin model_name.constantize rescue nil end.class == Class)
-            inject_into_class "app/models/#{model_filename}", model_name.constantize do
-              "  include RankedModel\n  ranks :list_order\n  default_scope :order => 'list_order ASC'\n"
-            end
-          end  
-        end
         
         def self.next_migration_number(path)
           unless @prev_migration_nr

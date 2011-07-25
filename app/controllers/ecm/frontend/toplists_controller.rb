@@ -6,7 +6,7 @@ class Ecm::Frontend::ToplistsController < Ecm::FrontendController
   class_inheritable_accessor :model
 
   def index
-    @objects = @_model.all
+    @objects = @_model.all.paginate :page => params[:page], :per_page => 20
 
     respond_to do |format|
       format.html do

@@ -9,4 +9,6 @@ Gem::Specification.new do |s|
   s.version = "0.0.1"
   s.add_dependency('paperclip', "~> 2.3")
   s.add_dependency('ranked-model') # , 'git://github.com/robotex82/ranked-model.git')
+  s.add_dependency('will_paginate', '~> 3.0.pre2')
+  s.add_dependency('ecm_admin')
 end

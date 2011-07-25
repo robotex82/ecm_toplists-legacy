@@ -16,6 +16,9 @@ group :test do
   gem 'forgery'
 end  
 
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'ecm_frontend', :git => 'git://github.com/robotex82/ecm_frontend.git'
+gem 'ecm_admin', :git => 'git://github.com/robotex82/ecm_admin.git'
 gem 'ranked-model', :git => 'git://github.com/robotex82/ranked-model.git'
 gem 'paperclip', "~> 2.3"
+gem 'will_paginate', '~> 3.0.pre2'
