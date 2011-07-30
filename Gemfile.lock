@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/robotex82/ecm_admin.git
-  revision: 5efcd16c4a0f46131c9eb7613ae3f17568ff8c74
+  revision: 57cf77fb56e5093898e132dcf40d516325dbd2fe
   specs:
     ecm_admin (0.0.1)
       devise

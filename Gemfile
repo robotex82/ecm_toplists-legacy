@@ -11,7 +11,6 @@ gem "rspec-rails", ">= 2.0.0.beta"
 # gem 'ruby-debug19'
 
 group :test do
-  # Factory girl
   gem 'factory_girl_rails'
   gem 'forgery'
 end  

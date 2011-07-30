@@ -1,7 +1,7 @@
 <div id="<%= item.class.to_s.underscore %>-<%= item.id %>" class="<%= item.class.to_s.underscore %>">
   <h1 class="<%= item.class.to_s.underscore %>-name"><%= item.name %></h1>
   <%= image_tag(item.main_image.url, { :class => "#{item.class.to_s.underscore}-main-image" }) if item.main_image? %>
-  <p class="<%= item.class.to_s.underscore %>-description"><%= item.description %></p>
+  <p class="<%= item.class.to_s.underscore %>-description"><%=m item.description %></p>
   <% if item.link %>  
     <p class="<%= item.class.to_s.underscore %>-link"><%= link_to item.link, item.link %></p>
   <% end %>  
