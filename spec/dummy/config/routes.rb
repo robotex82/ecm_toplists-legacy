@@ -1,5 +1,6 @@
 Dummy::Application.routes.draw do
   
+  
   namespace :admin do
     resources :charts, :only => [] do  
       member do      
@@ -11,11 +12,24 @@ Dummy::Application.routes.draw do
 
   resources :charts, :only => [:index, :show]
 
+  namespace :admin do
+    resources :top_djs, :only => [] do  
+      member do      
+        put 'list_order_position/:list_order_position', :action => 'list_order_position', :as => 'list_order_position'
+      end
+    end            
+  end            
+
+
+  resources :top_djs, :only => [:index, :show]
+
   get "admin/index"
 
   devise_for :admins, :skip => :registrations
 
   root :to => 'home#index'
+
+  get "home/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,5 +1,5 @@
 class Charts < Ecm::Toplist
-  include RankedModel  
+  include RankedModel
   ranks :list_order
   default_scope :order => 'list_order ASC'
   

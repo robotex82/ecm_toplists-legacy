@@ -1,4 +1,6 @@
-  include RankedModel  :list_order
+class TopDj < Ecm::Toplist
+  include RankedModel
+  ranks :list_order
   default_scope :order => 'list_order ASC'
   
   def list_position
@@ -13,10 +15,10 @@
           output = []
           o = bindings[:object]
           v = bindings[:view]
-          output << v.link_to("First", v.list_order_position_admin_top_club_path(o, :first),             :method => :put)
-          output << v.link_to("Up",    v.list_order_position_admin_top_club_path(o, o.list_position-1), :method => :put)
-          output << v.link_to("Down",  v.list_order_position_admin_top_club_path(o, o.list_position+1), :method => :put)
-          output << v.link_to("Last",  v.list_order_position_admin_top_club_path(o, :last),              :method => :put)
+          output << v.link_to("First", v.list_order_position_admin_top_dj_path(o, :first),             :method => :put)
+          output << v.link_to("Up",    v.list_order_position_admin_top_dj_path(o, o.list_position-1), :method => :put)
+          output << v.link_to("Down",  v.list_order_position_admin_top_dj_path(o, o.list_position+1), :method => :put)
+          output << v.link_to("Last",  v.list_order_position_admin_top_dj_path(o, :last),              :method => :put)
           v.raw output.join("&nbsp;")
         end
       end
@@ -30,3 +32,4 @@
       field :created_at
     end
   end  
+end  

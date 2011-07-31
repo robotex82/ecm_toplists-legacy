@@ -13,7 +13,7 @@ describe Admin::ChartsController do
     
     it "should assign a charts to @charts" do
       put :list_order_position, :id => @charts, :list_order_position => :first
-      assigns(:charts).should eq(@charts)
+      assigns(:object).should eq(@charts)
     end
   end
 end  

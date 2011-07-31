@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110725094431) do
+ActiveRecord::Schema.define(:version => 20110731232401) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -59,5 +59,22 @@ ActiveRecord::Schema.define(:version => 20110725094431) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories_on_item_and_table_and_month_and_year"
+
+  create_table "top_djs", :force => true do |t|
+    t.integer  "list_order"
+    t.string   "name"
+    t.text     "description"
+    t.string   "link"
+    t.string   "preview_image_file_name"
+    t.string   "preview_image_content_type"
+    t.integer  "preview_image_file_size"
+    t.datetime "preview_image_updated_at"
+    t.string   "main_image_file_name"
+    t.string   "main_image_content_type"
+    t.integer  "main_image_file_size"
+    t.datetime "main_image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

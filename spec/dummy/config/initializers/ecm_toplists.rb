@@ -1,3 +1,3 @@
 Ecm::Toplists.config do |config|
-  config.scoped_views = false
+  config.scoped_views = true
 end

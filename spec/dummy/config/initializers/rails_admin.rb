@@ -1,3 +1,3 @@
 RailsAdmin.config  do |config|
-  config.included_models = [Charts]
+  config.included_models = []
 end  

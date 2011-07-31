@@ -1,0 +1,15 @@
+<div id="<%%= list_item.class.to_s.underscore %>-<%%= list_item.id %>" class="<%%= list_item.class.to_s.underscore %>">
+  <div id="<%%= list_item.class.to_s.underscore %>-position-<%%= list_item.list_position + 1 %>" class="toplist-position">
+    <%%= list_item.list_position + 1 %>
+  </div>
+  
+  <div class="toplist-preview-image-container">
+    <%%= link_to(image_tag(list_item.preview_image.url, { :class => "toplist-preview-image" }), list_item) if list_item.preview_image? %>
+  </div>
+  
+  <h2 class="<%%= list_item.class.to_s.underscore %>-name"><%%= list_item.name %></h2>
+  
+  <p class="<%%= list_item.class.to_s.underscore %>-description"><%%=m list_item.description_teaser %><%%= link_to t(:more), list_item %></p>
+</div>
+
+<hr />
