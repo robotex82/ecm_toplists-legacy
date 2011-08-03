@@ -1,4 +1,4 @@
-class Ecm::Admin::ToplistsController < Ecm::AdminController
+class Ecm::Admin::ToplistsController < AdminController
   before_filter :_set_model
   
   unloadable
