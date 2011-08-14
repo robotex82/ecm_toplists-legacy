@@ -10,7 +10,7 @@ class Ecm::Admin::ToplistsController < AdminController
     
     respond_to do |format|
       if @object.update_attribute(:list_order_position, params[:list_order_position])
-        format.html { redirect_to(rails_admin_list_path(:model_name => @_model.class), :notice => '@_model.class.human_name list order position was successfully updated.') }
+        format.html { redirect_to(rails_admin_list_path(:model_name => @object.class), :notice => "#{@object.class.human_name} list order position was successfully updated.") }
         # format.xml  { render :xml => @_model.all }
       end  
     end
