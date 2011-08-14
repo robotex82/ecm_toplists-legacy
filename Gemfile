@@ -15,7 +15,7 @@ group :test do
   gem 'forgery'
 end  
 
-gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git', :branch => "rails-3.0"
 gem 'ecm_core', :git => 'git://github.com/robotex82/ecm_core.git'
 gem 'ecm_frontend', :git => 'git://github.com/robotex82/ecm_frontend.git'
 gem 'ecm_admin', :git => 'git://github.com/robotex82/ecm_admin.git'

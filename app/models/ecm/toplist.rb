@@ -4,7 +4,7 @@ module Ecm
 #    ranks :list_order  
 #    default_scope :order => 'list_order ASC'
     
-    validates :name, :presence => true, :uniqueness => true
+    validates :name, :presence => true, :uniqueness => true, :if => :has_name?
     validates :link, :format => {:with => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :if => :link }
       
     has_attached_file :preview_image
@@ -14,6 +14,10 @@ module Ecm
     # validates_attachment_presence :main_image  
     
     self.abstract_class = true    
+    
+    def has_name
+      respond_to? 'name'
+    end  
     
     def description_teaser(count = 200)
       return unless description
