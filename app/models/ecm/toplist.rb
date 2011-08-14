@@ -15,7 +15,7 @@ module Ecm
     
     self.abstract_class = true    
     
-    def has_name
+    def has_name?
       respond_to? 'name'
     end  
     
