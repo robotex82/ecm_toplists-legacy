@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.summary = "Insert EcmToplists summary."
   s.description = "Insert EcmToplists description."
   s.files = Dir["{app,lib,config}/**/*"] + ["MIT-LICENSE", "Rakefile", "Gemfile", "README.rdoc"]
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.add_dependency('paperclip', "~> 2.3")
   s.add_dependency('ranked-model') # , 'git://github.com/robotex82/ranked-model.git')
   s.add_dependency('will_paginate', '~> 3.0.pre2')
